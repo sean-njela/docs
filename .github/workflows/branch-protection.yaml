@@ -1,0 +1,12 @@
+# .github/workflows/run-branch-protection.yml
+
+name: Trigger Branch Protection Ruleset
+
+on:
+  workflow_dispatch:  # or on push/pull_request etc.
+
+jobs:
+  call-branch-protection:
+    uses: ./.github/workflows/gitflow-protect.yaml
+    secrets:
+      GH_PAT: ${{ secrets.GH_PAT }}
