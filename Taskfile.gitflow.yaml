@@ -509,7 +509,7 @@ tasks:
         
         # Update documentation
         echo "📚 Updating documentation..."
-        poetry run mike deploy --update-aliases "$version" latest || echo "⚠️ Documentation update failed, but release was successful."
+        poetry run mike deploy --push --update-aliases "$version" latest || echo "⚠️ Documentation update failed, but release was successful."
         git push origin gh-pages || echo "⚠️ Failed to push documentation, but release was successful."
         poetry run mike set-default latest --push || echo "⚠️ Failed to set default documentation version, but release was successful."
         
