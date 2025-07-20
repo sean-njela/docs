@@ -1,0 +1,110 @@
+name: Reusable GitFlow Branch Protection
+
+on:
+  workflow_call:
+    secrets:
+      GH_PAT:
+        required: true
+
+jobs:
+  apply-branch-protection-rulesets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Protect 'main' branch
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api --method PUT "/repos/$GH_REPO/rulesets/1" \
+            -f name="Main Branch Protection" \
+            -f target="branch" \
+            -f enforcement="active" \
+            --input - << EOF
+            {
+              "conditions": {
+                "ref_name": {
+                  "include": ["refs/heads/main"],
+                  "exclude": []
+                }
+              },
+              "rules": [
+                {
+                  "type": "pull_request",
+                  "parameters": {
+                    "dismiss_stale_reviews_on_push": true,
+                    "require_code_owner_review": true,
+                    "require_last_push_approval": false,
+                    "required_approving_review_count": 2,
+                    "required_review_thread_resolution": true
+                  }
+                },
+                { "type": "non_fast_forward" }
+              ]
+            }
+          EOF
+
+      - name: Protect 'develop' branch
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api --method PUT "/repos/$GH_REPO/rulesets/2" \
+            -f name="Develop Branch Protection" \
+            -f target="branch" \
+            -f enforcement="active" \
+            --input - << EOF
+            {
+              "conditions": {
+                "ref_name": {
+                  "include": ["refs/heads/develop"],
+                  "exclude": []
+                }
+              },
+              "rules": [
+                {
+                  "type": "pull_request",
+                  "parameters": {
+                    "dismiss_stale_reviews_on_push": true,
+                    "require_code_owner_review": false,
+                    "require_last_push_approval": false,
+                    "required_approving_review_count": 1,
+                    "required_review_thread_resolution": false
+                  }
+                },
+                { "type": "non_fast_forward" }
+              ]
+            }
+          EOF
+
+      - name: Protect 'release/*' and 'hotfix/*' branches
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api --method PUT "/repos/$GH_REPO/rulesets/3" \
+            -f name="Release and Hotfix Branch Protection" \
+            -f target="branch" \
+            -f enforcement="active" \
+            --input - << EOF
+            {
+              "conditions": {
+                "ref_name": {
+                  "include": ["refs/heads/release/*", "refs/heads/hotfix/*"],
+                  "exclude": []
+                }
+              },
+              "rules": [
+                {
+                  "type": "pull_request",
+                  "parameters": {
+                    "dismiss_stale_reviews_on_push": true,
+                    "require_code_owner_review": false,
+                    "require_last_push_approval": false,
+                    "required_approving_review_count": 1,
+                    "required_review_thread_resolution": false
+                  }
+                },
+                { "type": "non_fast_forward" }
+              ]
+            }
+          EOF
