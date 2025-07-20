@@ -27,8 +27,8 @@ tasks:
     preconditions:
       - sh: "[ -d .git ]"
         msg: "❌ Not a Git repository. Run 'git init' first."
-      - sh: "! git config --get gitflow.branch.master >/dev/null 2>&1"
-        msg: "✅ Git Flow is already configured."
+      # - sh: "! git config --get gitflow.branch.master >/dev/null 2>&1"
+      #   msg: "✅ Git Flow is already configured."
     cmds:
       - |
         echo "🚀 Initializing Git Flow..."

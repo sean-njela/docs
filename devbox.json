@@ -3,6 +3,7 @@
     "packages": [
       "python@3.12",
       "go-task@3.44",
+      "gitflow@1.12",
       "poetry@2.1"
     ],
     "shell": {
