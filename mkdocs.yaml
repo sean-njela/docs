@@ -143,8 +143,8 @@ extra:
     deprecated: Deprecated
 
 nav:
-  - Home: 0-index.md
-  - Disclaimer: 1-disclaimer.md
+  - Home: index.md
+  - Disclaimer: disclaimer.md
   - Quick Start:
       - Prerequisites: 0-quickstart/0-prerequisites.md
       - Getting Started: 0-quickstart/1-getting-started.md
