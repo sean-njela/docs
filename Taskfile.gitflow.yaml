@@ -106,7 +106,7 @@ tasks:
         # Check for ArgoCD-specific files in remote changes
         ARGOCD_FILES=$(git diff --name-only {{.DEV_BRANCH}} origin/{{.DEV_BRANCH}} | grep -E '\.argocd-source-.*\.yaml$' || echo "")
         if [ -n "$ARGOCD_FILES" ]; then
-          echo "📌 Detected ArgoCD-generated files in remote changes:"
+          echo "📌 Detected ArgoCD-generated files in remote changes:" 
           echo "$ARGOCD_FILES"
         fi
         
