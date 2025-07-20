@@ -599,3 +599,8 @@ tasks:
           git branch -d $b || echo "⚠️ Could not delete $b (maybe not merged?)"
         done
 
+  rm-cached:
+    desc: "🧹 Remove cached files"
+    cmds:
+      - |
+        git rm --cached -r .
