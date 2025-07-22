@@ -1,10 +1,10 @@
-name: GitHub Branch Protection Setup
+name: GitFlow Branch Protection Setup
 
 on:
   workflow_dispatch:
 
 jobs:
-  protect-main:
+  protect-branches:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GH_PAT }}
@@ -16,48 +16,113 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
-      - name: Set branch protection for main
+      - name: Create or update 'Main' ruleset
         run: |
-          gh api \
-            --method PUT \
-            -H "Accept: application/vnd.github+json" \
-            "/repos/$GH_REPO/branches/main/protection" \
-            -F required_status_checks.strict=true \
-            -F required_status_checks.contexts[]=check-freeze \
-            -F required_status_checks.contexts[]=build \
-            -F enforce_admins=true \
-            -F required_pull_request_reviews.dismiss_stale_reviews=true \
-            -F required_pull_request_reviews.required_approving_review_count=1 \
-            -F restrictions=null
+          RULE_NAME="Main Branch Protection"
+          PAYLOAD='{
+            "name": "'"$RULE_NAME"'",
+            "target": "branch",
+            "enforcement": "active",
+            "conditions": {
+              "ref_name": {
+                "include": ["refs/heads/main"],
+                "exclude": []
+              }
+            },
+            "rules": [
+              {
+                "type": "pull_request",
+                "parameters": {
+                  "dismiss_stale_reviews_on_push": true,
+                  "require_code_owner_review": true,
+                  "require_last_push_approval": false,
+                  "required_approving_review_count": 2,
+                  "required_review_thread_resolution": true
+                }
+              },
+              { "type": "non_fast_forward" }
+            ]
+          }'
 
-  protect-develop:
-    runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.GH_PAT }}
-      GH_REPO: ${{ github.repository }}
+          RULE_ID=$(gh api repos/$GH_REPO/rulesets | jq -r ".[] | select(.name==\"$RULE_NAME\") | .id")
+          if [ -n "$RULE_ID" ]; then
+            echo "Updating $RULE_NAME (ID: $RULE_ID)"
+            echo "$PAYLOAD" | gh api --method PUT "/repos/$GH_REPO/rulesets/$RULE_ID" --input -
+          else
+            echo "Creating $RULE_NAME"
+            echo "$PAYLOAD" | gh api --method POST "/repos/$GH_REPO/rulesets" --input -
+          fi
 
-    steps:
-      - name: Set branch protection for develop
+      - name: Create or update 'Develop' ruleset
         run: |
-          gh api \
-            --method PUT \
-            -H "Accept: application/vnd.github+json" \
-            "/repos/$GH_REPO/branches/develop/protection" \
-            -F required_status_checks.strict=true \
-            -F required_status_checks.contexts[]=build \
-            -F enforce_admins=true \
-            -F required_pull_request_reviews.dismiss_stale_reviews=true \
-            -F required_pull_request_reviews.required_approving_review_count=1 \
-            -F restrictions=null
+          RULE_NAME="Develop Branch Protection"
+          PAYLOAD='{
+            "name": "'"$RULE_NAME"'",
+            "target": "branch",
+            "enforcement": "active",
+            "conditions": {
+              "ref_name": {
+                "include": ["refs/heads/develop"],
+                "exclude": []
+              }
+            },
+            "rules": [
+              {
+                "type": "pull_request",
+                "parameters": {
+                  "dismiss_stale_reviews_on_push": true,
+                  "require_code_owner_review": false,
+                  "require_last_push_approval": false,
+                  "required_approving_review_count": 1,
+                  "required_review_thread_resolution": false
+                }
+              },
+              { "type": "non_fast_forward" }
+            ]
+          }'
 
-  protect-release-hotfix:
-    runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.GH_PAT }}
-      GH_REPO: ${{ github.repository }}
+          RULE_ID=$(gh api repos/$GH_REPO/rulesets | jq -r ".[] | select(.name==\"$RULE_NAME\") | .id")
+          if [ -n "$RULE_ID" ]; then
+            echo "Updating $RULE_NAME (ID: $RULE_ID)"
+            echo "$PAYLOAD" | gh api --method PUT "/repos/$GH_REPO/rulesets/$RULE_ID" --input -
+          else
+            echo "Creating $RULE_NAME"
+            echo "$PAYLOAD" | gh api --method POST "/repos/$GH_REPO/rulesets" --input -
+          fi
 
-    steps:
-      - name: Set branch protection for release/* and hotfix/*
+      - name: Create or update 'Release/Hotfix' ruleset
         run: |
-          echo "⚠️ GitHub API does not support wildcard protection on branches via REST."
-          echo "Apply protection manually or automate it per actual branch name (e.g., release/v1.0.0)"
+          RULE_NAME="Release and Hotfix Branch Protection"
+          PAYLOAD='{
+            "name": "'"$RULE_NAME"'",
+            "target": "branch",
+            "enforcement": "active",
+            "conditions": {
+              "ref_name": {
+                "include": ["refs/heads/release/*", "refs/heads/hotfix/*"],
+                "exclude": []
+              }
+            },
+            "rules": [
+              {
+                "type": "pull_request",
+                "parameters": {
+                  "dismiss_stale_reviews_on_push": true,
+                  "require_code_owner_review": false,
+                  "require_last_push_approval": false,
+                  "required_approving_review_count": 1,
+                  "required_review_thread_resolution": false
+                }
+              },
+              { "type": "non_fast_forward" }
+            ]
+          }'
+
+          RULE_ID=$(gh api repos/$GH_REPO/rulesets | jq -r ".[] | select(.name==\"$RULE_NAME\") | .id")
+          if [ -n "$RULE_ID" ]; then
+            echo "Updating $RULE_NAME (ID: $RULE_ID)"
+            echo "$PAYLOAD" | gh api --method PUT "/repos/$GH_REPO/rulesets/$RULE_ID" --input -
+          else
+            echo "Creating $RULE_NAME"
+            echo "$PAYLOAD" | gh api --method POST "/repos/$GH_REPO/rulesets" --input -
+          fi
