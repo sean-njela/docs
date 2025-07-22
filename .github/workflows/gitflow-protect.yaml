@@ -11,12 +11,12 @@ jobs:
       GH_REPO: ${{ github.repository }}
 
     steps:
-      - name: Set up dependencies
+      - name: Set up tools
         run: |
           sudo apt-get update
           sudo apt-get install -y jq
 
-      - name: Create or update 'Main' ruleset
+      - name: Protect main branch
         run: |
           RULE_NAME="Main Branch Protection"
           PAYLOAD='{
@@ -36,11 +36,23 @@ jobs:
                   "dismiss_stale_reviews_on_push": true,
                   "require_code_owner_review": true,
                   "require_last_push_approval": false,
-                  "required_approving_review_count": 2,
+                  "required_approving_review_count": 1,
                   "required_review_thread_resolution": true
                 }
               },
-              { "type": "non_fast_forward" }
+              {
+                "type": "required_status_checks",
+                "parameters": {
+                  "strict_required_status_checks_policy": true,
+                  "required_status_checks": [
+                    "check-freeze",     # Replace with actual job name(s)
+                    "build"             # Example: build/test jobs
+                  ]
+                }
+              },
+              {
+                "type": "non_fast_forward"
+              }
             ]
           }'
 
@@ -53,7 +65,7 @@ jobs:
             echo "$PAYLOAD" | gh api --method POST "/repos/$GH_REPO/rulesets" --input -
           fi
 
-      - name: Create or update 'Develop' ruleset
+      - name: Protect develop branch
         run: |
           RULE_NAME="Develop Branch Protection"
           PAYLOAD='{
@@ -90,7 +102,7 @@ jobs:
             echo "$PAYLOAD" | gh api --method POST "/repos/$GH_REPO/rulesets" --input -
           fi
 
-      - name: Create or update 'Release/Hotfix' ruleset
+      - name: Protect release/hotfix branches
         run: |
           RULE_NAME="Release and Hotfix Branch Protection"
           PAYLOAD='{
