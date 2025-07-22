@@ -45,8 +45,8 @@ jobs:
                 "parameters": {
                   "strict_required_status_checks_policy": true,
                   "required_status_checks": [
-                    "check-freeze",     # Replace with actual job name(s)
-                    "build"             # Example: build/test jobs
+                    "check-freeze",
+                    "build"     
                   ]
                 }
               },
