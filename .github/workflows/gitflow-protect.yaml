@@ -11,12 +11,12 @@ jobs:
       GH_REPO: ${{ github.repository }}
 
     steps:
-      - name: Set up tools
+      - name: Install tools
         run: |
           sudo apt-get update
           sudo apt-get install -y jq
 
-      - name: Protect main branch
+      - name: Create or update 'Main' ruleset (reviews, CODEOWNERS)
         run: |
           RULE_NAME="Main Branch Protection"
           PAYLOAD='{
@@ -41,16 +41,6 @@ jobs:
                 }
               },
               {
-                "type": "required_status_checks",
-                "parameters": {
-                  "strict_required_status_checks_policy": true,
-                  "required_status_checks": [
-                    "check-freeze",
-                    "build"     
-                  ]
-                }
-              },
-              {
                 "type": "non_fast_forward"
               }
             ]
@@ -65,7 +55,21 @@ jobs:
             echo "$PAYLOAD" | gh api --method POST "/repos/$GH_REPO/rulesets" --input -
           fi
 
-      - name: Protect develop branch
+      - name: Enforce required status checks on 'main' (classic protection API)
+        run: |
+          gh api \
+            -X PUT \
+            -H "Accept: application/vnd.github+json" \
+            /repos/$GH_REPO/branches/main/protection \
+            -f required_status_checks.strict=true \
+            -f required_status_checks.contexts[]="check-freeze" \
+            -f required_status_checks.contexts[]="build" \
+            -f enforce_admins=true \
+            -f required_pull_request_reviews.dismiss_stale_reviews=true \
+            -f required_pull_request_reviews.required_approving_review_count=1 \
+            -f restrictions=null
+
+      - name: Create or update 'Develop' ruleset
         run: |
           RULE_NAME="Develop Branch Protection"
           PAYLOAD='{
@@ -102,7 +106,7 @@ jobs:
             echo "$PAYLOAD" | gh api --method POST "/repos/$GH_REPO/rulesets" --input -
           fi
 
-      - name: Protect release/hotfix branches
+      - name: Create or update 'Release and Hotfix' ruleset
         run: |
           RULE_NAME="Release and Hotfix Branch Protection"
           PAYLOAD='{
