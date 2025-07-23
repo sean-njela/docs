@@ -94,7 +94,6 @@
    devbox shell # Start the devbox environment (this will also start the poetry environment)
    poetry install # Install dependencies
    poetry env activate # use the output to activate the poetry environment ( ONLY IF DEVBOX DOES NOT ACTIVATE THE ENVIRONMENT)
-   mkdocs serve # Start the mkdocs server http://127.0.0.1:8000/your-repo/
    ```
 > Note - The first time you run `devbox shell`, it will take a few minutes to install the necessary tools. But after that it will be much faster.
 
@@ -105,9 +104,6 @@
 ```bash
 # this one command will run all commands necessary to setup the environment. yes, really.
 task dev
-
-# serve docs locally
-mkdocs serve
 ```
 
 ---
@@ -116,7 +112,7 @@ mkdocs serve
 For full documentation, setup instructions, and architecture details, visit the [docs](docs/0-index.md) or run:
 
 ```bash
-mkdocs serve
+task docs
 ```
 
 Docs available at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
@@ -199,7 +195,7 @@ Distributed under the MIT License. See `LICENSE` for more info.
 
 ## 📬 Contact
 
-Your Name – [@yourlinkedin](https://linkedin.com/in/yourlinkedin) – [@yourtwitter/x](https://x.com/yourtwitter) – [your.email@example.com](mailto:your.email@example.com)
+Your Name – [@linkedin](https://linkedin.com/in/yourlinkedin) – [@twitter/x](https://x.com/yourtwitter) – [your.email@example.com](mailto:your.email@example.com)
 
 Project Link: [https://github.com/your-username/your-repo](https://github.com/your-username/your-repo)
 
