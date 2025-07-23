@@ -23,23 +23,23 @@ This will start the devbox environment and poetry environment and install all de
 In a seperate terminal, run:
 
 ```bash
-mkdocs serve # serve docs locally
+task docs # serve docs locally
 ```
 
 Docs available at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-All other commands are in the form of tasks. The project task file is `Taskfile.yml`.
+All other commands are in the form of tasks. The project task file is `Taskfile.yaml`.
 
 ```bash
 task --list-all # to see all project tasks
 task <command> # usage
 ```
 
-The project also uses gitflow for version control with gh-pages deployment automation. This is optional but you can also automate it using the `Taskfile.gitflow.yml` file.
+The project also uses gitflow for version control with gh-pages deployment automation. This is optional but you can also automate it using the `Taskfile.gitflow.yaml` file.
 
 ```bash
-task -t Taskfile.gitflow.yml --list-all # to see all gitflow tasks
-task -t Taskfile.gitflow.yml <command> # usage
+task -t Taskfile.gitflow.yaml --list-all # to see all gitflow tasks
+task -t Taskfile.gitflow.yaml <command> # usage
 ```
 
 See the [Tasks](../2-project/tasks/0-overview.md) section for more information on all tasks.
