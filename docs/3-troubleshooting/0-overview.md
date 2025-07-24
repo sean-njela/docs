@@ -33,7 +33,7 @@ You can browse specific problem pages here:
 
 ## 🧠 Pro Tip
 
-When searching externally, include the name of the tool and error message (in quotes if exact), e.g.:
+When searching using the search bar above, include the name of the tool or parts of the error message (in quotes if exact), e.g.:
 
 "helm install" or "helm" "chart not found" or "not found"
 "terraform apply" or "terraform" "invalid provider configuration" or "provider not found"
