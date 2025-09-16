@@ -55,6 +55,8 @@
   <img src="assets/screenshot2.png" alt="screenshot2" />
 </div> -->
 
+[▶ Watch a short demo](assets/demo-video-small.mp4)
+
 ---
 
 ## 🛠️ Tech Stack
@@ -202,3 +204,4 @@ Project Link: [https://github.com/your-username/your-repo](https://github.com/yo
 About Me - [About Me](docs/4-about/about.md)
 
 ---
+
