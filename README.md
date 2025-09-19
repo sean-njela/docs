@@ -55,6 +55,19 @@
   <img src="assets/screenshot2.png" alt="screenshot2" />
 </div> -->
 
+<!-- 
+## 📸 Demo
+<a href="https://www.example.com/">
+<div align="center"> 
+  <img src="assets/screenshot1.png" alt="screenshot 1" />
+  <img href="https://www.example.com/" src="assets/screenshot2.png" alt="screenshot 2" />
+</div>
+</a>
+
+![▶ Watch a short demo](assets/demo-video-gif.gif)
+[![▶ Watch a short demo](assets/demo-video-gif.gif)](https://www.example.com/)
+ -->
+
 [▶ Watch a short demo](assets/demo-video-small.mp4)
 
 ---
@@ -204,4 +217,5 @@ Project Link: [https://github.com/your-username/your-repo](https://github.com/yo
 About Me - [About Me](docs/4-about/about.md)
 
 ---
+
 
