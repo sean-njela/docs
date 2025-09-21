@@ -46,7 +46,7 @@
   * [Contributing](#contributing)
   * [Contact](#contact)
 
----
+
 
 ## 📸 Screenshots
 
@@ -70,7 +70,7 @@
 
 [▶ Watch a short demo](assets/demo-video-small.mp4)
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -80,7 +80,7 @@
 ![Taskfile](https://img.shields.io/badge/Taskfile-3.44.0-green)
 ![gitflow](https://img.shields.io/badge/gitflow-1.12-green)
 
----
+
 
 ## 📋 Prerequisites
 
@@ -112,7 +112,7 @@
    ```
 > Note - The first time you run `devbox shell`, it will take a few minutes to install the necessary tools. But after that it will be much faster.
 
----
+
 
 ## 🚀 Quick Start
 
@@ -121,7 +121,7 @@
 task dev
 ```
 
----
+
 ## 📚 Documentation
 
 For full documentation, setup instructions, and architecture details, visit the [docs](docs/0-index.md) or run:
@@ -132,7 +132,7 @@ task docs
 
 Docs available at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
----
+
 
 ## 📂 Features
 
@@ -140,7 +140,7 @@ Docs available at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 * Feature 2
 * Feature 3
 
----
+
 
 ## ✅ Tasks (Automation)
 
@@ -170,19 +170,19 @@ task --list-all
 
 If you do not want the gitflow tasks, you can remove the `Taskfile.gitflow.yaml` file and unlink it from the `Taskfile.yaml` file (remove the `includes` section). If you cannot find the section use CTRL + F to search for Taskfile.yaml.
 
----
+
 
 ## 📝 NOTES
 
 > Important notes to remember whilst using the project
 
----
+
 
 ## 📚 Troubleshooting
 
 For comprehensive troubleshooting, refer to the [Troubleshooting](docs/3-troubleshooting/overview.md) section. Or open the github pages [here](https://your-username.github.io/docs/3-troubleshooting/overview.md) and use the search bar to search your issue (USE INDIVIDUAL KEYWORDS NOT THE ISSUE NAME). 
 
----
+
 
 ## 🛣️ Roadmap
 
@@ -190,7 +190,7 @@ For comprehensive troubleshooting, refer to the [Troubleshooting](docs/3-trouble
 * [ ] Feature B
 * [ ] Feature C
 
----
+
 
 ## 🤝 Contributing
 
@@ -200,13 +200,13 @@ For comprehensive troubleshooting, refer to the [Troubleshooting](docs/3-trouble
 
 > Contributions welcome! Open an issue or submit a PR.
 
----
+
 
 ## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more info.
 
----
+
 
 ## 📬 Contact
 
@@ -216,6 +216,7 @@ Project Link: [https://github.com/your-username/your-repo](https://github.com/yo
 
 About Me - [About Me](docs/4-about/about.md)
 
----
+
+
 
 
