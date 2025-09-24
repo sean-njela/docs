@@ -13,7 +13,7 @@
   </p>
   -->
 
-  <h1>📘 Project Title</h1>
+  <h1>Project Title</h1>
 
   <p>
     Brief description of the project. This can include what problem it solves, the tools or technologies it showcases, or what it aims to demonstrate.
@@ -41,7 +41,7 @@
   </p>
 </div>
 
-## 📚 Table of Contents
+## Table of Contents
 
   * [Screenshots](#screenshots)
   * [Tech Stack](#tech-stack)
@@ -55,7 +55,7 @@
   * [Contributing](#contributing)
   * [Contact](#contact)
 
-## 📸 Screenshots
+## Screenshots
 
 <!-- <div align="center"> 
   <img src="assets/screenshot1.png" alt="screenshot1" />
@@ -63,7 +63,7 @@
 </div> -->
 
 <!-- 
-## 📸 Demo
+## Demo
 <a href="https://www.example.com/">
 <div align="center"> 
   <img src="assets/screenshot1.png" alt="screenshot 1" />
@@ -77,7 +77,7 @@
 
 [▶ Watch a short demo](assets/demo-video-small.mp4)
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 > List of tools used in the project
 
@@ -85,7 +85,7 @@
 ![Taskfile](https://img.shields.io/badge/Taskfile-3.44.0-green)
 ![gitflow](https://img.shields.io/badge/gitflow-1.12-green)
 
-## 📋 Prerequisites
+## Prerequisites
 
 > This project uses [Devbox](https://www.jetify.com/devbox/) to manage the development environment. Devbox provides a consistent, isolated environment with all the necessary CLI tools pre-installed.
 
@@ -115,7 +115,7 @@
    ```
 > Note - The first time you run `devbox shell`, it will take a few minutes to install the necessary tools. But after that it will be much faster.
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 task setup
@@ -126,7 +126,7 @@ task dev
 task status # check if everything is running
 ```
 
-## 📚 Documentation
+## Documentation
 
 For full documentation, setup instructions, and architecture details, visit the [docs](docs/index.md) or run:
 
@@ -136,13 +136,13 @@ task docs
 
 Docs available at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-## 📂 Features
+## Features
 
 * Feature 1
 * Feature 2
 * Feature 3
 
-## ✅ Tasks (Automation)
+## Tasks
 
 > This project is designed for a simple, one-command setup. All necessary actions are orchestrated through `Taskfile.yaml`.
 
@@ -168,23 +168,23 @@ To see all tasks:
 task --list-all
 ```
 
-If you do not want the gitflow tasks, you can remove the `Taskfile.gitflow.yaml` file and unlink it from the `Taskfile.yaml` file (remove the `includes` section). If you cannot find the section use CTRL + F to search for Taskfile.yaml.
+If you do not want the gitflow tasks, you can remove the `Taskfile.gitflow.yaml` file and unlink it from the `Taskfile.yaml` file (remove the `includes` section). If you cannot find the section use CTRL + F to search for `Taskfile.gitflow.yaml`.
 
-## 📝 NOTES
+## NOTES
 
 > Important notes to remember whilst using the project
 
-## 📚 Troubleshooting
+## Troubleshooting
 
 For comprehensive troubleshooting, refer to the [Troubleshooting](docs/3-troubleshooting/overview.md) section. Or open the github pages [here](https://your-username.github.io/docs/3-troubleshooting/overview.md) and use the search bar to search your issue (USE INDIVIDUAL KEYWORDS NOT THE ISSUE NAME). 
 
-## 🛣️ Roadmap
+## Roadmap
 
 * [x] Feature A
 * [ ] Feature B
 * [ ] Feature C
 
-## 🤝 Contributing
+## Contributing
 
 <a href="https://github.com/your-username/your-repo/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=your-username/your-repo" />
@@ -192,21 +192,14 @@ For comprehensive troubleshooting, refer to the [Troubleshooting](docs/3-trouble
 
 > Contributions welcome! Open an issue or submit a PR.
 
-## 📄 License
+## License
 
 Distributed under the MIT License. See `LICENSE` for more info.
 
-## 📬 Contact
+## Contact
 
 Your Name – [@linkedin](https://linkedin.com/in/yourlinkedin) – [@twitter/x](https://x.com/yourtwitter) – [your.email@example.com](mailto:your.email@example.com)
 
 Project Link: [https://github.com/your-username/your-repo](https://github.com/your-username/your-repo)
 
 About Me - [About Me](docs/4-about/about.md)
-
-
-
-
-
-
-
