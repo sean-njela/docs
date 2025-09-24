@@ -120,10 +120,10 @@
 ```bash
 task setup
 
-task dev
+task status # check if everything is running
 
 # GIVE EVERYTHING A MINUTE TO SETUP THEN
-task status # check if everything is running
+task dev
 ```
 
 ## Documentation
@@ -203,3 +203,4 @@ Your Name – [@linkedin](https://linkedin.com/in/yourlinkedin) – [@twitter/x]
 Project Link: [https://github.com/your-username/your-repo](https://github.com/your-username/your-repo)
 
 About Me - [About Me](docs/4-about/about.md)
+
