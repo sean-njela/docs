@@ -2,20 +2,21 @@
 
 Welcome! This section will walk you through how to get the project up and running on your local machine or development environment.
 
----
-
 ## Prerequisites
 
 Before you begin, ensure you have the following installed all the requirements. See the [Prerequisites](./0-prerequisites.md) section for detailed instructions on installing these tools.
-
----
 
 ## Walkthrough
 
 After everything is wired up, you can run the following commands:
 
 ```bash
-task dev # this one command will run all commands necessary to setup the environment
+task setup
+
+task dev
+
+# GIVE EVERYTHING A MINUTE TO SETUP THEN
+task status # check if everything is running
 ```
 
 This will start the devbox environment and poetry environment and install all dependencies. And that is all you need to do to get started. (Yes, really.)
@@ -44,8 +45,6 @@ task -t Taskfile.gitflow.yaml <command> # usage
 
 See the [Tasks](../2-project/tasks/0-overview.md) section for more information on all tasks.
 
----
-
 ## Cleanup
 
 To tear everything down after testing:
@@ -56,8 +55,6 @@ task cleanup-prod # to cleanup everything running in production (IF YOU USED ANY
 task cleanup-all # to cleanup everything (local and production)
 ```
 
----
-
 ## Need Help?
 
 If you get stuck:
@@ -65,8 +62,7 @@ If you get stuck:
 * Check the [Troubleshooting](../3-troubleshooting/0-overview.md) guide.
 * Open an issue on [GitHub](https://github.com/sean-njela/demo_monitoring/issues)
 
----
-
 Happy building!
 
 ---
+
