@@ -1,16 +1,16 @@
-# 🚀 Getting Started
+# Getting Started
 
 Welcome! This section will walk you through how to get the project up and running on your local machine or development environment.
 
 ---
 
-## 🧰 Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed all the requirements. See the [Prerequisites](./0-prerequisites.md) section for detailed instructions on installing these tools.
 
 ---
 
-## ✅ Walkthrough
+## Walkthrough
 
 After everything is wired up, you can run the following commands:
 
@@ -46,7 +46,7 @@ See the [Tasks](../2-project/tasks/0-overview.md) section for more information o
 
 ---
 
-## 🧼 Cleanup
+## Cleanup
 
 To tear everything down after testing:
 
@@ -58,15 +58,15 @@ task cleanup-all # to cleanup everything (local and production)
 
 ---
 
-## ❓ Need Help?
+## Need Help?
 
 If you get stuck:
 
 * Check the [Troubleshooting](../3-troubleshooting/0-overview.md) guide.
-* Open an issue on [GitHub](https://github.com/your-username/your-repo/issues)
+* Open an issue on [GitHub](https://github.com/sean-njela/demo_monitoring/issues)
 
 ---
 
-Happy building! 🛠
+Happy building!
 
 ---
