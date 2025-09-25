@@ -104,7 +104,7 @@ tasks:
         git checkout {{.DEV_BRANCH}}
         
         # Check for ArgoCD-specific files in remote changes
-        ARGOCD_FILES=$(git diff --name-only {{.DEV_BRANCH}} origin/{{.DEV_BRANCH}} | grep -E '\.argocd-source-.*\.yaml$' || echo "")
+        ARGOCD_FILES=$(git diff --name-only {{.DEV_BRANCH}} origin/{{.DEV_BRANCH}} | grep -E '\.argocd-source-.*\.yml$' || echo "")
         if [ -n "$ARGOCD_FILES" ]; then
           echo "📌 Detected ArgoCD-generated files in remote changes:" 
           echo "$ARGOCD_FILES"
@@ -153,7 +153,7 @@ tasks:
         git checkout {{.MAIN_BRANCH}}
         
         # Check for ArgoCD-specific files in remote changes
-        ARGOCD_FILES=$(git diff --name-only {{.MAIN_BRANCH}} origin/{{.MAIN_BRANCH}} | grep -E '\.argocd-source-.*\.yaml$' || echo "")
+        ARGOCD_FILES=$(git diff --name-only {{.MAIN_BRANCH}} origin/{{.MAIN_BRANCH}} | grep -E '\.argocd-source-.*\.yml$' || echo "")
         if [ -n "$ARGOCD_FILES" ]; then
           echo "📌 Detected ArgoCD-generated files in remote changes:"
           echo "$ARGOCD_FILES"
@@ -603,4 +603,5 @@ tasks:
     desc: "🧹 Remove cached files"
     cmds:
       - |
+
         git rm --cached -r .
