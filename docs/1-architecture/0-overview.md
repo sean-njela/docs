@@ -1,21 +1,17 @@
-# 🧱 System Architecture Overview
+# System Architecture Overview
 
 This section provides a high-level overview of the architecture and design decisions behind the project. It outlines the system's core components, their responsibilities, and how they interact.
 
----
+## Design Philosophy
 
-## 📐 Design Philosophy
-
-Summarize your approach or values. Examples:
+Summarise your approach or values. Examples:
 
 - Modular and composable
 - Secure by default
 - Automation-first (e.g., IaC, CI/CD)
 - Portable/local-dev friendly
 
----
-
-## 🧩 Core Components
+## Core Components
 
 ### 1. Infrastructure
 
@@ -38,9 +34,7 @@ Summarize your approach or values. Examples:
 - Mention secret handling (e.g., Sealed Secrets, SOPS, Vault)
 - Config management tools (e.g., Helm, Kustomize)
 
----
-
-## 🔀 Architecture Diagram
+## Architecture Diagram
 
 Add a visual overview of your system if available.
 
@@ -50,9 +44,7 @@ If not available yet, note:
 
 *Architecture diagram to be added in a future update.*
 
----
-
-## 🔄 Data / Control Flow
+## Data / Control Flow
 
 Explain the high-level lifecycle or data flow:
 
@@ -62,12 +54,8 @@ Explain the high-level lifecycle or data flow:
 4. Image updater checks container registries and pushes updates
 5. Notifications triggered via webhook → Slack
 
----
-
-## 🧭 Related Pages
+## Related Pages
 
 * [Quickstart: Getting Started](../0-quickstart/1-getting-started.md)
 * [Topics / Application Layer](../2-project/0-topic1.md)
 * [Taskfile Automation](../2-project/tasks/0-overview.md)
-
----

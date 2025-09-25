@@ -25,7 +25,6 @@ cd your-repo
 devbox shell # Start the devbox environment (this will also start the poetry environment)
 poetry install # Install dependencies
 poetry env activate # use the output to activate the poetry environment ( ONLY IF DEVBOX DOES NOT ACTIVATE THE ENVIRONMENT)
-mkdocs serve # Start the mkdocs server http://127.0.0.1:8000/your-repo/
 ```
 !!!tip "Note"
     The first time you run `devbox shell`, it will take a few minutes to install the necessary tools. But after that it will be much faster.
