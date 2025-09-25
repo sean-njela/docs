@@ -59,7 +59,7 @@ vars:
 
 includes:
   common:
-    taskfile: ./Taskfile.gitflow.yaml
+    taskfile: ./Taskfile.gitflow.yml
     flatten: true
 
 
@@ -189,3 +189,4 @@ tasks:
       - "{{.gif}}"
     generates:
       - "assets/demo-video-small.gif"
+
