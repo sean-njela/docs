@@ -144,7 +144,7 @@ Docs available at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ## Tasks
 
-> This project is designed for a simple, one-command setup. All necessary actions are orchestrated through `Taskfile.yaml`.
+> This project is designed for a simple, one-command setup. All necessary actions are orchestrated through `Taskfile.yml`.
 
 ```bash
 task setup # setup the environment
@@ -154,7 +154,7 @@ task cleanup-dev # cleanup the dev environment
 
 ### Git Workflow with Git Flow
 
-The `Taskfile.gitflow.yaml` provides a structured Git workflow using Git Flow. This helps in managing features, releases, and hotfixes in a standardized way. To run these tasks just its the same as running any other task. Using gitflow is optional.
+The `Taskfile.gitflow.yml` provides a structured Git workflow using Git Flow. This helps in managing features, releases, and hotfixes in a standardized way. To run these tasks just its the same as running any other task. Using gitflow is optional.
 
 ```bash
 task init                 # Initialize Git Flow with 'main', gh-pages and 'develop'
@@ -168,7 +168,7 @@ To see all tasks:
 task --list-all
 ```
 
-If you do not want the gitflow tasks, you can remove the `Taskfile.gitflow.yaml` file and unlink it from the `Taskfile.yaml` file (remove the `includes` section). If you cannot find the section use CTRL + F to search for `Taskfile.gitflow.yaml`.
+If you do not want the gitflow tasks, you can remove the `Taskfile.gitflow.yml` file and unlink it from the `Taskfile.yml` file (remove the `includes` section). If you cannot find the section use CTRL + F to search for `Taskfile.gitflow.yml`.
 
 ## NOTES
 
@@ -203,4 +203,5 @@ Your Name – [@linkedin](https://linkedin.com/in/yourlinkedin) – [@twitter/x]
 Project Link: [https://github.com/your-username/your-repo](https://github.com/your-username/your-repo)
 
 About Me - [About Me](docs/4-about/about.md)
+
 
