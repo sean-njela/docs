@@ -107,6 +107,11 @@ tasks:
 
 
 # ─── Cleanup Tasks ─────────────────────────────────────────────────────────────
+  cleanup-zone:
+    desc: "Cleans up all Zone.Identifier files"
+    cmds:
+      - find . -type f -name "*Zone.Identifier*" -delete
+
   cleanup-dev:
     desc: "🔁 Cleanup development resources only"
 
@@ -189,4 +194,5 @@ tasks:
       - "{{.gif}}"
     generates:
       - "assets/demo-video-small.gif"
+
 
