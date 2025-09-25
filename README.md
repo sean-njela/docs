@@ -84,6 +84,7 @@
 ![Devbox](https://img.shields.io/badge/Devbox-0.15.0-green)
 ![Taskfile](https://img.shields.io/badge/Taskfile-3.44.0-green)
 ![gitflow](https://img.shields.io/badge/gitflow-1.12-green)
+![uv](https://img.shields.io/badge/uv-0.8-green)
 
 ## Prerequisites
 
@@ -109,9 +110,7 @@
 3. **Start the Devbox Environment and poetry environment**
 
    ```bash
-   devbox shell # Start the devbox environment (this will also start the poetry environment)
-   poetry install # Install dependencies
-   poetry env activate # use the output to activate the poetry environment ( ONLY IF DEVBOX DOES NOT ACTIVATE THE ENVIRONMENT)
+   devbox shell # Start the devbox environment (this will also start the uv environment)
    ```
 > Note - The first time you run `devbox shell`, it will take a few minutes to install the necessary tools. But after that it will be much faster.
 
@@ -131,10 +130,17 @@ task dev
 For full documentation, setup instructions, and architecture details, visit the [docs](docs/index.md) or run:
 
 ```bash
+# Option 1
 task docs
+
+# Or if you prefer the docker version:
+# Option 2
+task docs-docker
+
+# ONLY RUN ONE OF THE ABOVE
 ```
 
-Docs available at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+Docs are then available at: [http://127.0.0.1:8030/]()
 
 ## Features
 

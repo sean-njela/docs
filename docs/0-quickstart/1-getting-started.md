@@ -24,10 +24,17 @@ This will start the devbox environment and poetry environment and install all de
 In a seperate terminal, run:
 
 ```bash
-task docs # serve docs locally
+# Option 1
+task docs
+
+# Or if you prefer the docker version:
+# Option 2
+task docs-docker
+
+# ONLY RUN ONE OF THE ABOVE
 ```
 
-Docs available at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+Docs are then available at: [http://127.0.0.1:8030/]()
 
 All other commands are in the form of tasks. The project task file is `Taskfile.yaml`.
 
