@@ -509,9 +509,9 @@ tasks:
         
         # Update documentation
         echo "📚 Updating documentation..."
-        poetry run mike deploy --push --update-aliases "$version" latest || echo "⚠️ Documentation update failed, but release was successful."
+        uv run mike deploy --push --update-aliases "$version" latest || echo "⚠️ Documentation update failed, but release was successful."
         git push origin gh-pages || echo "⚠️ Failed to push documentation, but release was successful."
-        poetry run mike set-default latest --push || echo "⚠️ Failed to set default documentation version, but release was successful."
+        uv run mike set-default latest --push || echo "⚠️ Failed to set default documentation version, but release was successful."
         
         echo "✅ Release $version completed successfully!"
     requires:
@@ -582,8 +582,8 @@ tasks:
         git push origin {{.DEV_BRANCH}} || (echo "❌ Failed to push to {{.DEV_BRANCH}}. Please push manually." && exit 1)
         git push --tags || (echo "❌ Failed to push tags. Please push manually." && exit 1)
         
-        poetry run mike deploy --push --update-aliases "{{.version}}" latest
-        poetry run mike set-default latest --push
+        uv run mike deploy --push --update-aliases "{{.version}}" latest
+        uv run mike set-default latest --push
 
         echo "✅ Hotfix v$version completed successfully!"
     requires:
