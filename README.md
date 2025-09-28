@@ -208,6 +208,7 @@ Your Name – [@linkedin](https://linkedin.com/in/yourlinkedin) – [@twitter/x]
 
 Project Link: [https://github.com/your-username/your-repo](https://github.com/your-username/your-repo)
 
-About Me - [About Me](docs/4-about/about.md)
+About Me - [About Me](docs/4-about/0-about.md)
+
 
 
