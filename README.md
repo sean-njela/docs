@@ -103,7 +103,7 @@
 2. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/sean-njela/your-repo.git
    cd your-repo
    ```
 
@@ -182,7 +182,7 @@ If you do not want the gitflow tasks, you can remove the `Taskfile.gitflow.yml` 
 
 ## Troubleshooting
 
-For comprehensive troubleshooting, refer to the [Troubleshooting](docs/3-troubleshooting/overview.md) section. Or open the github pages [here](https://your-username.github.io/docs/3-troubleshooting/overview.md) and use the search bar to search your issue (USE INDIVIDUAL KEYWORDS NOT THE ISSUE NAME). 
+For comprehensive troubleshooting, refer to the [Troubleshooting](docs/3-troubleshooting/0-overview.md) section. Or open the github pages [here](https://sean-njela.github.io/docs/3-troubleshooting/0-overview.md) and use the search bar to search your issue (USE INDIVIDUAL KEYWORDS NOT THE ISSUE NAME). 
 
 ## Roadmap
 
@@ -192,8 +192,8 @@ For comprehensive troubleshooting, refer to the [Troubleshooting](docs/3-trouble
 
 ## Contributing
 
-<a href="https://github.com/your-username/your-repo/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=your-username/your-repo" />
+<a href="https://github.com/sean-njela/your-repo/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=sean-njela/your-repo" />
 </a>
 
 > Contributions welcome! Open an issue or submit a PR.
@@ -204,11 +204,12 @@ Distributed under the MIT License. See `LICENSE` for more info.
 
 ## Contact
 
-Your Name – [@linkedin](https://linkedin.com/in/yourlinkedin) – [@twitter/x](https://x.com/yourtwitter) – [your.email@example.com](mailto:your.email@example.com)
+Your Name – [@linkedin](https://linkedin.com/in/sean-njela) – [@twitter/x](https://x.com/devopssean) – [seannjela@outlook.com](mailto:seannjela@outlook.com)
 
-Project Link: [https://github.com/your-username/your-repo](https://github.com/your-username/your-repo)
+Project Link: [https://github.com/sean-njela/your-repo](https://github.com/sean-njela/your-repo)
 
 About Me - [About Me](docs/4-about/0-about.md)
+
 
 
 
