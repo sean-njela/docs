@@ -71,6 +71,8 @@ tasks:
 
   setup:
     desc: "Setup environment: install dependencies, generate config etc."
+    cmds:
+      - pre-commit install
 
 
 # ─── Environment Management ────────────────────────────────────────────────────
@@ -195,4 +197,5 @@ tasks:
     sources:
       - "{{.gif}}"
     generates:
+
       - "assets/demo-video-small.gif"
