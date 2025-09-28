@@ -5,7 +5,8 @@
     "go-task@3.44",
     "gitflow@1.12",
     "ffmpeg@7.1.1",
-    "uv@0.8"
+    "uv@0.8",
+    "pre-commit@4.3"
   ],
   "shell": {
     "init_hook": [
