@@ -85,6 +85,8 @@
 ![Taskfile](https://img.shields.io/badge/Taskfile-3.44.0-green)
 ![gitflow](https://img.shields.io/badge/gitflow-1.12-green)
 ![uv](https://img.shields.io/badge/uv-0.8-green)
+![precommit](https://img.shields.io/badge/precommit-4.3.0-green)
+
 
 ## Prerequisites
 
@@ -209,6 +211,7 @@ Your Name – [@linkedin](https://linkedin.com/in/sean-njela) – [@twitter/x](h
 Project Link: [https://github.com/sean-njela/your-repo](https://github.com/sean-njela/your-repo)
 
 About Me - [About Me](docs/4-about/0-about.md)
+
 
 
 
