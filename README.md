@@ -87,6 +87,11 @@
 ![uv](https://img.shields.io/badge/uv-0.8-green)
 ![precommit](https://img.shields.io/badge/precommit-4.3.0-green)
 
+## Features
+
+* Feature 1
+* Feature 2
+* Feature 3
 
 ## Prerequisites
 
@@ -143,12 +148,6 @@ task docs-docker
 ```
 
 Docs are then available at: [http://127.0.0.1:8030/]()
-
-## Features
-
-* Feature 1
-* Feature 2
-* Feature 3
 
 ## Tasks
 
@@ -211,6 +210,7 @@ Your Name – [@linkedin](https://linkedin.com/in/sean-njela) – [@twitter/x](h
 Project Link: [https://github.com/sean-njela/your-repo](https://github.com/sean-njela/your-repo)
 
 About Me - [About Me](docs/4-about/0-about.md)
+
 
 
 
