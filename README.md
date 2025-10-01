@@ -43,20 +43,30 @@
 
 ## Screenshots
 
-<!-- Example (uncomment if needed) -->
-<!--
-<div align="center"> 
-  <img src="assets/screenshot1.png" alt="screenshot1" width="800" />
-  <img src="assets/screenshot2.png" alt="screenshot2" width="800" />
-</div>
--->
+<!-- <details>
+  <summary>Click to expand</summary>
 
-<!-- Demo (optional, keep commented) -->
-<!--
-## Demo
-[▶ Watch a short demo](assets/demo-video.mp4)
-[▶ Watch a short demo](assets/demo-video-small.mp4)
--->
+  This content is hidden until you click.  
+  You can put **Markdown** here too:
+  - Lists
+  - Code
+</details> -->
+
+<details>
+  <summary>Click to expand</summary>
+  <!-- Example (uncomment if needed) -->
+  <div align="center"> 
+    <img src="assets/screenshot1.png" alt="screenshot1" width="800" />
+    <img src="assets/screenshot2.png" alt="screenshot2" width="800" />
+  </div>
+
+  <!-- Demo (optional, keep commented) -->
+  <!--
+  ## Demo
+  [▶ Watch a short demo](assets/demo-video.mp4)
+  [▶ Watch a short demo](assets/demo-video-small.mp4)
+  -->
+</details>
 
 ## Tech Stack
 
@@ -161,3 +171,4 @@ Distributed under the MIT License. See `LICENSE` for more info.
 * [Twitter/X](https://x.com/devopssean)
 * [seannjela@outlook.com](mailto:seannjela@outlook.com)
 * [About Me](docs/4-about/0-about.md)
+
