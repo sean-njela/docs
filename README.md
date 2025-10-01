@@ -1,6 +1,6 @@
 <div align="center">
 
-  <!-- Row of icons -->
+  <!-- Row of icons (optional, uncomment if needed) -->
   <!--
   <p>
     <img src="https://logo.svgcdn.com/d/kubernetes-plain-wordmark.svg" alt="Kubernetes" height="95" />
@@ -16,66 +16,47 @@
   <h1>Project Title</h1>
 
   <p>
-    Brief description of the project. This can include what problem it solves, the tools or technologies it showcases, or what it aims to demonstrate.
+    Short description of the project. What it does, what problem it solves, or what it demonstrates.
   </p>
 
   <p>
-    <a href="https://github.com/sean-njela/docs/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/sean-njela/docs" alt="contributors" />
-  </a>
-  <a href="">
-    <img src="https://img.shields.io/github/last-commit/sean-njela/docs" alt="last update" />
-  </a>
-  <a href="https://github.com/sean-njela/docs/network/members">
-    <img src="https://img.shields.io/github/forks/sean-njela/docs" alt="forks" />
-  </a>
-  <a href="https://github.com/sean-njela/docs/stargazers">
-    <img src="https://img.shields.io/github/stars/sean-njela/docs" alt="stars" />
-  </a>
-  <a href="https://github.com/sean-njela/docs/issues/">
-    <img src="https://img.shields.io/github/issues/sean-njela/docs" alt="open issues" />
-  </a>
-  <a href="https://github.com/sean-njela/docs/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/sean-njela/docs.svg" alt="license" />
-  </a>
+    <a href="https://github.com/your-org/your-repo/graphs/contributors">
+      <img src="https://img.shields.io/github/contributors/your-org/your-repo" alt="contributors" />
+    </a>
+    <a href="">
+      <img src="https://img.shields.io/github/last-commit/your-org/your-repo" alt="last update" />
+    </a>
+    <a href="https://github.com/your-org/your-repo/network/members">
+      <img src="https://img.shields.io/github/forks/your-org/your-repo" alt="forks" />
+    </a>
+    <a href="https://github.com/your-org/your-repo/stargazers">
+      <img src="https://img.shields.io/github/stars/your-org/your-repo" alt="stars" />
+    </a>
+    <a href="https://github.com/your-org/your-repo/issues/">
+      <img src="https://img.shields.io/github/issues/your-org/your-repo" alt="open issues" />
+    </a>
+    <a href="https://github.com/your-org/your-repo/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/your-org/your-repo.svg" alt="license" />
+    </a>
   </p>
 </div>
 
-## Table of Contents
-
-  * [Screenshots](#screenshots)
-  * [Tech Stack](#tech-stack)
-  * [Prerequisites](#prerequisites)
-  * [Quick Start](#quick-start)
-  * [Documentation](#documentation)
-  * [Features](#features)
-  * [Tasks (automation)](#tasks)
-  * [Roadmap](#roadmap)
-  * [License](#license)
-  * [Contributing](#contributing)
-  * [Contact](#contact)
-
 ## Screenshots
 
-<!-- <div align="center"> 
-  <img src="assets/screenshot1.png" alt="screenshot1" />
-  <img src="assets/screenshot2.png" alt="screenshot2" />
-</div> -->
-
-<!-- 
-## Demo
-<a href="https://www.example.com/">
+<!-- Example (uncomment if needed) -->
+<!--
 <div align="center"> 
-  <img src="assets/screenshot1.png" alt="screenshot 1" />
-  <img href="https://www.example.com/" src="assets/screenshot2.png" alt="screenshot 2" />
+  <img src="assets/screenshot1.png" alt="screenshot1" width="800" />
+  <img src="assets/screenshot2.png" alt="screenshot2" width="800" />
 </div>
-</a>
+-->
 
-![▶ Watch a short demo](assets/demo-video-gif.gif)
-[![▶ Watch a short demo](assets/demo-video-gif.gif)](https://www.example.com/)
- -->
-
+<!-- Demo (optional, keep commented) -->
+<!--
+## Demo
+[▶ Watch a short demo](assets/demo-video.mp4)
 [▶ Watch a short demo](assets/demo-video-small.mp4)
+-->
 
 ## Tech Stack
 
@@ -95,79 +76,54 @@
 
 ## Prerequisites
 
-> This project uses [Devbox](https://www.jetify.com/devbox/) to manage the development environment. Devbox provides a consistent, isolated environment with all the necessary CLI tools pre-installed.
+> [!IMPORTANT]
+> This project uses **Devbox** to provide a consistent development environment. 
 
-0. **Install Docker**
+1. **Install Docker**  
+   [Docker installation guide](https://docs.docker.com/get-docker/)  
 
-   - Follow the [installation instructions](https://docs.docker.com/get-docker/) for your operating system.
+2. **Install Devbox**  
+   [Devbox installation guide](https://www.jetify.com/devbox/docs/installing_devbox/)  
 
-> The rest of the tools are already installed in the devbox environment
-
-1. **Install Devbox**
-
-   - Follow the [installation instructions](https://www.jetify.com/devbox/docs/installing_devbox/) for your operating system.
-
-2. **Clone the Repository**
-
+3. **Clone the repository**  
    ```bash
    git clone https://github.com/sean-njela/your-repo.git
    cd your-repo
    ```
 
-3. **Start the Devbox Environment and poetry environment**
+4. **Start Devbox shell**
 
    ```bash
-   devbox shell # Start the devbox environment (this will also start the uv environment)
+   devbox shell
    ```
-> Note - The first time you run `devbox shell`, it will take a few minutes to install the necessary tools. But after that it will be much faster.
+
+  > First run may take several minutes to install tools.
 
 ## Quick Start
 
 ```bash
 task setup
-
-task status # check if everything is running
-
-# GIVE EVERYTHING A MINUTE TO SETUP THEN
-task dev
+task status   # check if everything is running
+task dev      # start development stack
+task cleanup-dev
 ```
 
 ## Documentation
 
-For full documentation, setup instructions, and architecture details, visit the [docs](docs/index.md) or run:
+Full documentation is in [docs](docs/index.md). Run locally with:
 
 ```bash
-# Option 1
 task docs
-
-# Or if you prefer the docker version:
-# Option 2
-task docs-docker
-
-# ONLY RUN ONE OF THE ABOVE
 ```
 
-Docs are then available at: [http://127.0.0.1:8030/]()
+Then open: [http://127.0.0.1:8030/]()
 
-## Tasks
+## Tasks (Automation)
 
+> [!IMPORTANT]
 > This project is designed for a simple, one-command setup. All necessary actions are orchestrated through `Taskfile.yml`.
 
-```bash
-task setup # setup the environment
-task dev # automated local provisioning
-task cleanup-dev # cleanup the dev environment
-```
-
-### Git Workflow with Git Flow
-
 The `Taskfile.gitflow.yml` provides a structured Git workflow using Git Flow. This helps in managing features, releases, and hotfixes in a standardized way. To run these tasks just its the same as running any other task. Using gitflow is optional.
-
-```bash
-task init                 # Initialize Git Flow with 'main', gh-pages and 'develop'
-task sync                 # Sync current branch with latest 'develop' and handle main updates
-task release:finish       # Finishes and publishes a release (merges, tags, pushes). e.g task release:finish version="1.2.0"
-```
 
 To see all tasks:
 
@@ -180,10 +136,6 @@ If you do not want the gitflow tasks, you can remove the `Taskfile.gitflow.yml` 
 ## NOTES
 
 > Important notes to remember whilst using the project
-
-## Troubleshooting
-
-For comprehensive troubleshooting, refer to the [Troubleshooting](docs/3-troubleshooting/0-overview.md) section. Or open the github pages [here](https://sean-njela.github.io/docs/3-troubleshooting/0-overview.md) and use the search bar to search your issue (USE INDIVIDUAL KEYWORDS NOT THE ISSUE NAME). 
 
 ## Roadmap
 
@@ -205,16 +157,7 @@ Distributed under the MIT License. See `LICENSE` for more info.
 
 ## Contact
 
-Your Name – [@linkedin](https://linkedin.com/in/sean-njela) – [@twitter/x](https://x.com/devopssean) – [seannjela@outlook.com](mailto:seannjela@outlook.com)
-
-Project Link: [https://github.com/sean-njela/your-repo](https://github.com/sean-njela/your-repo)
-
-About Me - [About Me](docs/4-about/0-about.md)
-
-
-
-
-
-
-
-
+* [LinkedIn](https://linkedin.com/in/sean-njela)
+* [Twitter/X](https://x.com/devopssean)
+* [seannjela@outlook.com](mailto:seannjela@outlook.com)
+* [About Me](docs/4-about/0-about.md)
