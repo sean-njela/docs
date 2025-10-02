@@ -152,6 +152,7 @@ nav:
   #     - System Overview: 1-architecture/0-overview.md
   - MyProject: # This becomes the main docs for whatever you are building
       - Setup: 2-project/setup.md
+      - General Notes: 2-project/notes.md
       - uv Package Manager: 2-project/uv-notes.md
       - Project Topic 1: 2-project/0-topic1.md
       - Project Topic 2: 2-project/1-topic2.md
