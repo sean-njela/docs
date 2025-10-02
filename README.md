@@ -120,7 +120,7 @@ task cleanup-dev
 
 ## Documentation
 
-Full documentation is in [docs](docs/index.md). Run locally with:
+For full documentation, setup instructions, and architecture details, visit the [docs](docs/index.md) directory or run locally with:
 
 ```bash
 task docs
@@ -171,4 +171,5 @@ Distributed under the MIT License. See `LICENSE` for more info.
 * [Twitter/X](https://x.com/devopssean)
 * [seannjela@outlook.com](mailto:seannjela@outlook.com)
 * [About Me](docs/4-about/0-about.md)
+
 
