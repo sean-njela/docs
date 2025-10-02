@@ -98,7 +98,11 @@ tasks:
     desc: "List current deployed versions"
     cmds:
       - uv run mike list
-
+  
+  precommit:
+    desc: "Run all precommit rules"
+    cmds:
+      -  pre-commit run --all-files  
 
 # ─── System Management ─────────────────────────────────────────────────────────
   ports:
@@ -199,3 +203,4 @@ tasks:
     generates:
 
       - "assets/demo-video-small.gif"
+
