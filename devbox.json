@@ -10,7 +10,6 @@
   ],
   "shell": {
     "init_hook": [
-      "source ~/.aliases",
       "uv sync",
       "uv lock"
     ],
