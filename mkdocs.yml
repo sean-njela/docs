@@ -144,7 +144,7 @@ extra:
 
 nav:
   - Home: index.md # NEVER NAME THIS ANYTHING ELSE
-  # - Disclaimer: disclaimer.md
+  - Disclaimer: disclaimer.md
   # - Quick Start:
   #     - Prerequisites: 0-quickstart/0-prerequisites.md
   #     - Getting Started: 0-quickstart/1-getting-started.md
