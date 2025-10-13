@@ -12,7 +12,8 @@
   "shell": {
     "init_hook": [
       "uv sync",
-      "uv lock"
+      "uv lock",
+      "alias npm='pnpm'"
     ],
     "scripts": {
       "test": ["echo \"Error: no test specified\" && exit 1"]
