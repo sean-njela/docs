@@ -104,6 +104,11 @@ tasks:
     cmds:
       -  pre-commit run --all-files  
 
+  repomix:
+    desc: "Run the repomix container"
+    cmds:
+      - docker run -v .:/app -it --rm ghcr.io/yamadashy/repomix --no-security-check --output-show-line-numbers --style markdown
+
 # ─── System Management ─────────────────────────────────────────────────────────
   ports:
     desc: "List ports in use"
@@ -203,5 +208,6 @@ tasks:
     generates:
 
       - "assets/demo-video-small.gif"
+
 
 
