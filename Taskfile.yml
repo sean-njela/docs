@@ -17,6 +17,13 @@
 #     PROJECT_NAME: "{{.PROJECT_NAME}}"
 
 
+# ─── CLI Args ────────────────────────────────────────────────────────────────
+# shad:
+#     desc: "Add a shadcn component"
+#     dir: django_template/apps/web
+#     cmds:
+#       - uvx shadcn_django@latest add {{.CLI_ARGS}}
+
 # ─── Initialized Tasks ────────────────────────────────────────────────────────────────
 # init:dev:
 #   desc: "Initialize local/dev environment specifics"
@@ -208,6 +215,7 @@ tasks:
     generates:
 
       - "assets/demo-video-small.gif"
+
 
 
 
