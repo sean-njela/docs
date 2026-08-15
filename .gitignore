@@ -317,10 +317,6 @@ node_modules/
 *.dsw
 *.dsp
 
-# Visual Studio 6 technical files
-*.ncb
-*.aps
-
 # Visual Studio LightSwitch build output
 **/*.HTMLClient/GeneratedArtifacts
 **/*.DesktopClient/GeneratedArtifacts
@@ -423,3 +419,10 @@ FodyWeavers.xsd
 site/*
 
 .task/
+/.idea/misc.xml
+/.idea/docs.iml
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/libraries/my_test_package.xml
+/.idea/libraries/my_test_package2.xml
+/.idea/vcs.xml
