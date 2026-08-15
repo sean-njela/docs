@@ -40,7 +40,7 @@
 <details>
   <summary>Click to expand</summary>
   <!-- Example (uncomment if needed) -->
-  <div align="center"> 
+  <div align="center">
     <img src="assets/screenshot1.png" alt="screenshot1" width="800" />
     <img src="assets/screenshot2.png" alt="screenshot2" width="800" />
   </div>
@@ -50,45 +50,46 @@
 
 > List of tools used in the project
 
-[![Devbox](https://www.jetify.com/img/devbox/shield_moon.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
-![Taskfile](https://img.shields.io/badge/Taskfile-3.44.0-green)
-![gitflow](https://img.shields.io/badge/gitflow-1.12-green)
-![uv](https://img.shields.io/badge/uv-0.8-green)
+![mise](https://img.shields.io/badge/mise-managed-blue)
+![Taskfile](https://img.shields.io/badge/Taskfile-3.44.1-green)
+![gitflow-next](https://img.shields.io/badge/git--flow--next-2.0.0-green)
+![uv](https://img.shields.io/badge/uv-0.8.14-green)
 ![precommit](https://img.shields.io/badge/precommit-4.3.0-green)
 
 ## Prerequisites
 
-> [!IMPORTANT]
-> This project uses **Devbox** to provide a consistent development environment. 
+This project uses `mise.toml` and `mise.lock` for a reproducible development
+environment. Install Git and mise first. Docker is only required for the
+optional containerized documentation server.
 
-1. **Install Docker**  
-   [Docker installation guide](https://docs.docker.com/get-docker/)  
+Clone the repository and enter it:
 
-2. **Install Devbox**  
-   [Devbox installation guide](https://www.jetify.com/devbox/docs/installing_devbox/)  
+```bash
+git clone ...
+cd ...
+```
 
-3. **Clone the repository**  
-   ```bash
-   git clone ...
-   cd ...
-   ```
+Install the pinned project tools and prepare the Python environment:
 
-4. **Start Devbox shell**
+```bash
+mise install
+task setup
+```
 
-   ```bash
-   devbox shell
-   ```
-
-   > First run may take several minutes to install tools, but subsequent runs spin up in seconds.
+The project uses the tools declared in `mise.toml`. `mockoon` is not included
+because mise does not provide a matching backend; install it separately only
+if your project needs it.
 
 ## Quick Start
 
 ```bash
+mise install
 task setup
 task status   # check if everything is running
 task dev      # start development stack
 task cleanup-dev
 ```
+
 
 ## Documentation
 
@@ -103,9 +104,9 @@ Then open: [http://127.0.0.1:8030/]()
 ## Tasks (Automation)
 
 > [!IMPORTANT]
-> This project is designed for a simple, one-command setup. All necessary actions are orchestrated through `Taskfile.yml`.
+> This project keeps environment setup in mise and project automation in `Taskfile.yml`.
 
-The `Taskfile.gitflow.yml` provides a structured Git workflow using Git Flow. This helps in managing features, releases, and hotfixes in a standardized way. To run these tasks just its the same as running any other task. Using gitflow is optional. If you do not want the gitflow tasks, you can remove the `Taskfile.gitflow.yml` file and unlink it from the `Taskfile.yml` file (remove the `includes` section). If you cannot find the section use CTRL + F to search for `Taskfile.gitflow.yml`.
+The `Taskfile.gitflow.yml` provides a structured Git workflow using Git Flow. This helps in managing features, releases, and hotfixes in a standardized way. Running these tasks is the same as running any other task. Using gitflow is optional. If you do not want the gitflow tasks, you can remove the `Taskfile.gitflow.yml` file and unlink it from the `Taskfile.yml` file (remove the `includes` section). If you cannot find the section use CTRL + F to search for `Taskfile.gitflow.yml`.
 
 To see all tasks:
 

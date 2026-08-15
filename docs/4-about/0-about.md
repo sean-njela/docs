@@ -22,7 +22,7 @@ Whether you're here to learn, debug, borrow ideas, or just browse, you're welcom
 Some of the technologies you'll find across these projects:
 
 - Containers: Docker, Kubernetes, Kind
-- Infrastructure: Terraform, Helm, Devbox
+- Infrastructure: Terraform, Helm, mise
 - Automation: Taskfile, Make, CI/CD workflows
 - Docs: MkDocs, markdown, GitHub Pages
 - Languages: Python, Bash, YAML

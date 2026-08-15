@@ -19,11 +19,11 @@ You can browse specific problem pages here:
 
 !!! warning "Important Disclaimer"
 
-    This is a personal documentation site. I am maintaining it solo and cannot guarantee that every issue is fully documented or resolved. If you don’t find a solution here, **don’t panic** — most tools used in this project (e.g., Docker, Kubernetes, Terraform, Devbox) are widely adopted and well-supported. Try these resources first:
+    This is a personal documentation site. I am maintaining it solo and cannot guarantee that every issue is fully documented or resolved. If you don’t find a solution here, **don’t panic** — most tools used in this project (e.g., Docker, Kubernetes, Terraform, and mise) are widely adopted and well-supported. Try these resources first:
 
-     1. **ChatGPT or another AI assistant** – Quick answers and guided debugging  
-     2. **YouTube** – Visual walkthroughs for complex tools or errors  
-     3. **Google** – Forums, GitHub Issues, and StackOverflow posts are often goldmines  
+     1. **ChatGPT or another AI assistant** – Quick answers and guided debugging
+     2. **YouTube** – Visual walkthroughs for complex tools or errors
+     3. **Google** – Forums, GitHub Issues, and StackOverflow posts are often goldmines
 
 ## Pro Tip
 

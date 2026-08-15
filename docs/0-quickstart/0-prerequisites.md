@@ -1,33 +1,32 @@
 # Prerequisites
 
-This project uses [Devbox](https://www.jetify.com/devbox/) to manage the development environment. Devbox provides a consistent, isolated environment with all the necessary CLI tools pre-installed.
+This project uses [`mise`](https://mise.jdx.dev/) for project tools and Python
+environment management. The pinned tools are declared in `mise.toml` and
+`mise.lock`.
 
-## Docker
+## Required
 
-- Follow the [installation instructions](https://docs.docker.com/get-docker/) for your operating system.
+- Git
+- mise
+- Python, uv, Task, and project tools installed through mise
 
-The rest of the tools are already installed in the devbox environment
+Install Git and mise using your operating system's package manager or the
+official installation instructions.
 
-## Devbox
+## Optional
 
-- Follow the [installation instructions](https://www.jetify.com/devbox/docs/installing_devbox/) for your operating system.
+Install Docker only if you want to use the containerized MkDocs server:
 
-## Clone the Repository
+- [Docker installation guide](https://docs.docker.com/get-docker/)
+
+## Clone and prepare the project
 
 ```bash
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
+mise install
+task setup
 ```
 
-## Start the Devbox Environment and poetry environment
-
-```bash
-devbox shell # Start the devbox environment (this will also start the poetry environment)
-poetry install # Install dependencies
-poetry env activate # use the output to activate the poetry environment ( ONLY IF DEVBOX DOES NOT ACTIVATE THE ENVIRONMENT)
-```
-!!!tip "Note"
-    The first time you run `devbox shell`, it will take a few minutes to install the necessary tools. But after that it will be much faster.
-
-
----
+`task setup` runs `mise run setup`, which runs `uv sync` using the committed
+`uv.lock`, and then installs the pre-commit hooks.

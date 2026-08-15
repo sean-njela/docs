@@ -7,7 +7,7 @@ A short one-liner summary of the issue, e.g., “Helm chart fails with ‘chart 
 Briefly describe when/where this issue happens:
 - What tool was being used?
 - What command was run?
-- What environment (e.g., Devbox, Docker, local cluster)?
+- What environment (e.g., mise, Docker, local cluster)?
 - Optional: Any preconditions or relevant setup
 
 ## Symptoms

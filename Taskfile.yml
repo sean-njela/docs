@@ -77,10 +77,10 @@ tasks:
       - task --list-all
 
   setup:
-    desc: "Setup environment: install dependencies, generate config etc."
+    desc: "Sync the mise-managed Python environment and install hooks"
     cmds:
+      - mise run setup
       - pre-commit install
-
 
 # ─── Environment Management ────────────────────────────────────────────────────
   dev:
@@ -105,11 +105,11 @@ tasks:
     desc: "List current deployed versions"
     cmds:
       - uv run mike list
-  
+
   precommit:
     desc: "Run all precommit rules"
     cmds:
-      -  pre-commit run --all-files  
+      -  pre-commit run --all-files
 
   repomix:
     desc: "Run the repomix container"

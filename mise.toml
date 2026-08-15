@@ -1,0 +1,12 @@
+[tools]
+python = "3.13.3"
+uv = "0.8.14"
+task = "3.44.1"
+"aqua:gittower/git-flow-next" = "2.0.0"
+ffmpeg = "7.1.1"
+pre-commit = "4.3.0"
+act = "0.2.89"
+
+[tasks.setup]
+description = "Sync the project Python environment"
+run = "uv sync"
