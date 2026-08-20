@@ -85,7 +85,7 @@ if your project needs it.
 ```bash
 mise install
 task setup
-task status   # check if everything is running
+task status   # check if anything is running
 task dev      # start development stack
 task cleanup-dev
 ```

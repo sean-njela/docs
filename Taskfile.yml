@@ -99,7 +99,7 @@ tasks:
       - echo "App -> {{.APP_URL}}"
 
   status:
-    desc: "Check if everything is running"
+    desc: "Check if anything is running"
 
   versions:
     desc: "List current deployed versions"

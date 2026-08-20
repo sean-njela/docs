@@ -78,6 +78,6 @@ Use `uv run ...` for Python/MkDocs commands after `task setup`. Docker is option
 
 No repository-owned `tests/` or `test/` suite, fixtures, coverage configuration, or test/lint CI jobs currently exists. `pytest` and `black` are declared as development dependencies in `pyproject.toml`, but there is no pytest configuration or coverage threshold. If tests are added, keep them in a repository-owned test directory and run them through the uv environment (for example, `uv run pytest`).
 
-`task precommit` invokes `pre-commit run --all-files`, but no `.pre-commit-config.yaml` is currently present, so do not treat that task as an assured quality gate. The sole GitHub workflow is manually dispatched branch-protection API automation and does not validate documentation, tests, formatting, or builds.
+`task precommit` invokes `pre-commit run --all-files` using the shared `.pre-commit-config.yaml`. The hooks validate JSON, TOML, and YAML (excluding `mkdocs.yml`, which uses a deliberate Python YAML tag), reject merge conflicts, oversized additions, private keys, and case collisions. The sole GitHub workflow is manually dispatched branch-protection API automation and does not validate documentation, tests, formatting, or builds.
 
 For documentation changes, the practical smoke check is to run `task docs`, open the local site at port `8030`, and inspect the changed navigation/page. Avoid `repomix`'s `--no-security-check` mode for sensitive material and do not run Git Flow commit/push/release operations unless explicitly requested.
