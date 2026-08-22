@@ -1,6 +1,15 @@
 # Overview
 
-This Taskfile defines automation tasks to simplify development workflows and ensure consistency across environments.
+This Taskfile defines automation tasks to simplify development workflows and
+ensure consistency across environments. Project tools are installed and
+pinned by Mise; Task provides the project commands that run after setup.
+
+From the repository root, prepare the environment with:
+
+```bash
+mise install
+task setup
+```
 
 It abstracts repetitive shell commands into named tasks you can run with:
 

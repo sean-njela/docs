@@ -64,27 +64,33 @@ Includes safe commands to:
 
 ## Typical Usage Flow
 
-A typical flow using this Taskfile might look like:
+Mise provisions the pinned tools before Task runs the project setup task:
 
-* Set up your environment:
+1. Install the versions declared in `mise.toml` and `mise.lock`:
+
+   ```bash
+   mise install
+   ```
+
+2. Sync Python dependencies and install repository hooks:
 
    ```bash
    task setup
    ```
 
-* Start development:
+3. Start development:
 
    ```bash
    task dev
    ```
 
-* Serve documentation:
+4. Serve documentation:
 
    ```bash
    task docs
    ```
 
-* Clean up:
+5. Clean up:
 
    ```bash
    task cleanup

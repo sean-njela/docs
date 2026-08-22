@@ -56,6 +56,17 @@ This is typically run once at the start of the project using `task -t Taskfile.g
 - Deletes local feature/release branches after merging
 - Pulls and syncs remote branches as needed
 
+### 6. **MkDocs Deployment**
+- Builds the documentation with the repository's pinned Python environment.
+- Publishes the requested version and `latest` alias to the `gh-pages` branch with `mike`.
+- Requires a clean `main` branch so only committed documentation is deployed.
+
+Run it after committing and pushing the source changes:
+
+```bash
+task docs:deploy version="2.2.0"
+```
+
 ## Typical Usage Flow
 
 1. **Initialize GitFlow structure**
@@ -91,6 +102,11 @@ This is typically run once at the start of the project using `task -t Taskfile.g
 7. **Finish a hotfix**
    ```bash
    task hotfix:finish version="1.0.1"
+   ```
+
+8. **Deploy the documentation**
+   ```bash
+   task docs:deploy version="2.2.0"
    ```
 
 ## When Should You Use This?

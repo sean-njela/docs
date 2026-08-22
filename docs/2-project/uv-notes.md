@@ -1,17 +1,29 @@
 # uv Cheat Sheet
 
+This project uses [`mise`](https://mise.jdx.dev/) to install and pin Python,
+`uv`, and the other command-line tools declared in `mise.toml`. Keep
+`mise.toml` and `mise.lock` as the source of truth instead of installing
+project tools separately.
+
 ## Installation
 
+From the repository root:
+
 ```bash
-# Linux / macOS
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# Install the versions pinned in mise.toml and mise.lock
+mise install
 
-# Windows (PowerShell)
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+# Sync Python dependencies and install repository hooks
+task setup
 
-# Verify install
+# Verify the managed tools
+mise current
 uv --version
 ```
+
+Use the operating system package manager or the
+[official Mise installation instructions](https://mise.jdx.dev/installing-mise.html)
+to install Mise itself.
 
 ## Projects
 
@@ -42,31 +54,36 @@ uv remove requests
 ## Locking and Installing
 
 ```bash
-# Install all dependencies into the environment (creates uv.lock if missing)
+# Install the pinned project tools and sync dependencies
+mise install
+task setup
+
+# Sync after changing pyproject.toml
 uv sync
 
-# Update dependencies to latest allowed versions
+# Update dependencies to the latest allowed versions
 uv sync --upgrade
 
-# Compile lock file from requirements input
+# Compile a requirements file from project metadata
 uv pip compile pyproject.toml
-
-# Sync environment to match lock file
-uv pip sync uv.lock
 ```
+
+`mise install` manages the project tool versions; `uv sync` manages the
+Python environment and dependencies.
 
 ## Virtual Environments
 
+The project virtual environment is created and maintained by `uv sync`,
+which is run by `task setup`.
+
 ```bash
-# Create a virtual environment
-uv venv
-
-# Create with specific Python version
-uv venv --python 3.11
-
-# Show where environment is
+# Show the project environment path
 uv venv --path
+
+# Create a standalone environment for a separate project
+uv venv --python 3.11
 ```
+
 
 ## Running Code
 
@@ -83,19 +100,21 @@ uv run pytest
 
 ## Python Versions
 
+The project's Python version is pinned in `mise.toml` and installed through
+Mise:
+
 ```bash
-# List installed Python versions
-uv python list
+# Show the versions managed by Mise
+mise current
+mise ls python
 
-# Install Python 3.11
-uv python install 3.11
-
-# Upgrade Python 3.11 to latest patch
-uv python upgrade 3.11
-
-# Show default Python
-uv python pin
+# Change the project pin, then install it
+mise use python@3.14
+mise install
 ```
+
+Run `task setup` after changing the Python version so that `uv` recreates the
+project environment with the selected interpreter.
 
 ## Inspecting
 
@@ -119,19 +138,23 @@ uv publish
 
 ## Tools
 
+Project-wide CLI tools belong in `mise.toml` so every contributor uses the
+same versions:
+
 ```bash
-# Install a tool globally (example: black)
-uv tool install black
+# Install and list project-managed tools
+mise install
+mise ls
 
-# Run a tool
-uv tool run black --version
+# Run a Python CLI declared in the project dependencies
+uv run black --version
 
-# List installed tools
-uv tool list
-
-# Remove a tool
-uv tool uninstall black
+# Run a one-off Python CLI without installing it globally
+uvx flake8 docs/
 ```
+
+Use `uv tool run` or `uvx` for temporary Python tools; do not install a
+project tool globally when it can be pinned in `mise.toml`.
 
 ## Useful Options
 
@@ -193,37 +216,28 @@ uvx -m http.server 8000
 ## Notes
 
 * `uvx` installs packages into a cache under your user directory.
-* First run is slower, later runs are instant (from cache).
-* If you need to clear cache:
+* First run is slower; later runs reuse the cache.
+* If you need to clear the cache:
 
   ```bash
   uv cache clean
   ```
-* Useful for tools (linters, formatters, build helpers) you do not want in your project dependencies.
-* Equivalent to `npx` in Node.js or `pipx run` in Python.
 
-`uv tool list` will **never** show what is in `pyproject.toml`.
+* Use `mise ls` to inspect project-managed tools.
+* Use `uv tree` to inspect project dependencies.
+* Use `uvx` or `uv tool run` for temporary Python tools that are not part of
+  the project environment.
 
-Two separate systems:
+The project uses three distinct scopes:
 
-| Scope                    | Command                                                | What it manages                                       | Where it records state                                        |
-| ------------------------ | ------------------------------------------------------ | ----------------------------------------------------- | ------------------------------------------------------------- |
-| **Project dependencies** | `uv add`, `uv remove`, `uv sync`                       | The packages your project uses                        | `pyproject.toml` + `uv.lock`                                  |
-| **Global tools**         | `uv tool install`, `uv tool uninstall`, `uv tool list` | Stand-alone CLI tools, like `black`, `ruff`, `httpie` | User’s tool directory (`~/.local/share/uv/tools/` by default) |
+| Scope | Command | What it manages | Source of truth |
+| --- | --- | --- | --- |
+| **Project tools** | `mise install`, `mise current` | Pinned Python and CLI tools | `mise.toml` + `mise.lock` |
+| **Project dependencies** | `uv add`, `uv remove`, `uv sync` | Python packages | `pyproject.toml` + `uv.lock` |
+| **Temporary Python tools** | `uvx` or `uv tool run` | One-off CLI packages | User cache |
 
-So if you want to see **project dependencies**, use:
-
-```bash
-uv tree          # dependency graph
-```
-
-If you want to see **globally installed tools**, then use:
-
-```bash
-uv tool list
-```
-
-They are intentionally kept separate.
+Use `mise` for tools shared by the repository and `uv` for Python
+dependencies and project commands.
 
 With `uv`, you never edit `[tool.poetry.dependencies]` like in Poetry. You only use **standard PEP 621 fields** in `pyproject.toml`.
 

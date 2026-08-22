@@ -200,6 +200,29 @@ tasks:
         
         echo "✅ Synced with develop and main, handling any main updates"
 
+  docs:deploy:
+    desc: "🚀 Build and publish MkDocs -> task docs:deploy version=2.2.0"
+    cmds:
+      - |
+        set -eu
+        current_branch=$(git branch --show-current)
+
+        if [ "$current_branch" != "{{.MAIN_BRANCH}}" ]; then
+          echo "❌ Documentation releases must run from {{.MAIN_BRANCH}}."
+          exit 1
+        fi
+
+        if ! git diff --quiet || ! git diff --cached --quiet; then
+          echo "❌ Commit or stash local changes before deploying documentation."
+          exit 1
+        fi
+
+        uv run mkdocs build --clean
+        uv run mike deploy --push --update-aliases "{{.version}}" latest
+    requires:
+      vars:
+        - version
+
   feature:start:
     desc: "🚀 Start a new feature from 'develop' -> task feature:start name=login-form"
     cmds:
