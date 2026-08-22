@@ -58,10 +58,17 @@ This is typically run once at the start of the project using `task -t Taskfile.g
 
 ### 6. **MkDocs Deployment**
 - Builds the documentation with the repository's pinned Python environment.
-- Publishes the requested version and `latest` alias to the `gh-pages` branch with `mike`.
+- Automatically increments the patch number from the current `latest` version.
+- Publishes the new version and `latest` alias to the `gh-pages` branch with `mike`.
 - Requires a clean `main` branch so only committed documentation is deployed.
 
 Run it after committing and pushing the source changes:
+
+```bash
+task docs:deploy
+```
+
+To deploy an explicit version instead, pass `version`:
 
 ```bash
 task docs:deploy version="2.2.0"
@@ -106,7 +113,7 @@ task docs:deploy version="2.2.0"
 
 8. **Deploy the documentation**
    ```bash
-   task docs:deploy version="2.2.0"
+   task docs:deploy
    ```
 
 ## When Should You Use This?

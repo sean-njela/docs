@@ -201,7 +201,7 @@ tasks:
         echo "✅ Synced with develop and main, handling any main updates"
 
   docs:deploy:
-    desc: "🚀 Build and publish MkDocs -> task docs:deploy version=2.2.0"
+    desc: "🚀 Auto-version and publish MkDocs -> task docs:deploy [version=2.2.0]"
     cmds:
       - |
         set -eu
@@ -217,11 +217,17 @@ tasks:
           exit 1
         fi
 
+        requested_version="{{.version | default ""}}"
+        if [ -n "$requested_version" ]; then
+          version="$requested_version"
+        else
+          current_version=$(uv run mike list --json | uv run python -c 'import json, sys; versions = json.load(sys.stdin); print(next((item["version"] for item in versions if "latest" in item.get("aliases", [])), versions[0]["version"] if versions else "0.0.0"))')
+          version=$(CURRENT_VERSION="$current_version" uv run python -c 'import os, sys; value = os.environ["CURRENT_VERSION"]; parts = value.split("."); print(".".join([parts[0], parts[1], str(int(parts[2]) + 1)])) if len(parts) == 3 and all(part.isdigit() for part in parts) else sys.exit(f"Cannot auto-increment non-semver version: {value}")')
+        fi
+
+        echo "📚 Deploying documentation version $version..."
         uv run mkdocs build --clean
-        uv run mike deploy --push --update-aliases "{{.version}}" latest
-    requires:
-      vars:
-        - version
+        uv run mike deploy --push --update-aliases "$version" latest
 
   feature:start:
     desc: "🚀 Start a new feature from 'develop' -> task feature:start name=login-form"
