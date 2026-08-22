@@ -15,7 +15,8 @@ official installation instructions.
 
 ## Optional
 
-Install Docker only if you want to use the containerized MkDocs server:
+Install Docker if you want to use the containerized MkDocs server or run the
+GitHub workflows locally with `task test:ci`:
 
 - [Docker installation guide](https://docs.docker.com/get-docker/)
 
@@ -29,4 +30,6 @@ task setup
 ```
 
 `task setup` runs `mise run setup`, which runs `uv sync` using the committed
-`uv.lock`, and then installs the pre-commit hooks.
+`uv.lock`, and then installs the pre-commit hooks. `task test:ci` additionally
+requires a running Docker daemon because it executes the event-driven GitHub
+workflows through `act`.

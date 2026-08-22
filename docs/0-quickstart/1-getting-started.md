@@ -13,6 +13,25 @@ task setup
 `task setup` runs `mise run setup` to synchronize the Python dependencies with
 `uv`, then installs the pre-commit hooks.
 
+Run the local checks without Docker:
+
+```bash
+task check
+uv run pytest -q
+uv run mkdocs build --clean
+```
+
+To exercise the event-driven GitHub workflows through `act`, start Docker and
+run:
+
+```bash
+task test:ci
+```
+
+The local task runs the Ubuntu matrix leg for both `push` and `pull_request`.
+The complete Linux and macOS matrix runs in GitHub Actions.
+
+
 ## Run the project
 
 Use the Taskfile for project workflows:
@@ -21,7 +40,7 @@ Use the Taskfile for project workflows:
 task --list-all
 task setup
 task status
-task dev
+task dev       # configure dev:up before using
 ```
 
 Serve the documentation locally with one of these options:
@@ -50,8 +69,7 @@ task -t Taskfile.gitflow.yml <command>
 ## Cleanup
 
 ```bash
-task cleanup-dev
-task cleanup-all
+task cleanup
 ```
 
 See the [Tasks](../2-project/tasks/0-overview.md) section for the available

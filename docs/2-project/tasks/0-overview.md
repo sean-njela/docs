@@ -21,6 +21,27 @@ You can list all available tasks with:
 
 ```bash
 task --list-all
+
+## CI and regression checks
+
+Run the lightweight local checks with:
+
+```bash
+task check
+uv run pytest -q
+uv run mkdocs build --clean
+```
+
+Run the event-driven GitHub workflows locally with:
+
+```bash
+task test:ci
+```
+
+This task requires both the `act` CLI and a running Docker daemon. It runs the
+Ubuntu matrix leg for `push` and `pull_request`; GitHub Actions runs the
+complete Linux and macOS matrix. The manual branch-protection workflow is not
+executed locally because it changes GitHub rulesets.
 ```
 
 For detailed details about taskfile use:

@@ -59,8 +59,9 @@
 ## Prerequisites
 
 This project uses `mise.toml` and `mise.lock` for a reproducible development
-environment. Install Git and mise first. Docker is only required for the
-optional containerized documentation server.
+environment. Install Git and mise first. Docker is optional for the
+containerized documentation server and for running the event-driven CI workflow
+locally with `task test:ci`.
 
 Clone the repository and enter it:
 
@@ -85,10 +86,22 @@ if your project needs it.
 ```bash
 mise install
 task setup
-task status   # check if anything is running
-task dev      # start development stack
-task cleanup-dev
+task check
+task status    # check if anything is running
+task dev       # start development stack
+task cleanup
 ```
+
+To run the event-driven GitHub workflows locally, start Docker and run:
+
+```bash
+task test:ci
+```
+
+This runs the Ubuntu matrix leg for both `push` and `pull_request` through
+`act`. GitHub Actions runs the complete Linux and macOS matrix. If Docker
+Desktop is not the active context on your machine, select a working context
+before running the task, for example `DOCKER_CONTEXT=default task test:ci`.
 
 
 ## Documentation

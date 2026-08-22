@@ -32,7 +32,7 @@ Some of the technologies you'll find across these projects:
 ## About This Site
 
 - Built with `mkdocs-material`
-- Versioned using [`mike`](https://github.com/jimporter/mike)
+- Optionally versioned using [`mike`](https://github.com/jimporter/mike)
 - Fully local-first and Git-managed
 - Organized by topic, not tool — documentation follows the problem or pattern
 

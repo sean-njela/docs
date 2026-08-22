@@ -29,7 +29,7 @@ Here’s a breakdown of what’s covered:
 - Sets up Git Flow with `main` as the production branch and `develop` for ongoing work.
 - Configures standard prefixes (`feature/`, `release/`, `hotfix/`, etc.).
 - Ensures required branches (`main`, `develop`) exist locally and remotely.
-- Optionally initializes the `gh-pages` branch for documentation deployments.
+- Keeps branch management separate from project-specific build and deployment commands.
 
 This is typically run once at the start of the project using `task -t Taskfile.gitflow.yml init`.
 
@@ -55,24 +55,6 @@ This is typically run once at the start of the project using `task -t Taskfile.g
 ### 5. **Branch Cleanup and Syncing**
 - Deletes local feature/release branches after merging
 - Pulls and syncs remote branches as needed
-
-### 6. **MkDocs Deployment**
-- Builds the documentation with the repository's pinned Python environment.
-- Automatically increments the patch number from the current `latest` version.
-- Publishes the new version and `latest` alias to the `gh-pages` branch with `mike`.
-- Requires a clean `main` branch so only committed documentation is deployed.
-
-Run it after committing and pushing the source changes:
-
-```bash
-task docs:deploy
-```
-
-To deploy an explicit version instead, pass `version`:
-
-```bash
-task docs:deploy version="2.2.0"
-```
 
 ## Typical Usage Flow
 
@@ -111,10 +93,6 @@ task docs:deploy version="2.2.0"
    task hotfix:finish version="1.0.1"
    ```
 
-8. **Deploy the documentation**
-   ```bash
-   task docs:deploy
-   ```
 
 ## When Should You Use This?
 
@@ -122,7 +100,7 @@ Use this taskfile when:
 
 * You want consistent branch names and GitFlow discipline
 * You're working in long-lived projects that ship versioned releases
-* You have documentation (e.g. via `mike`) that needs coordinated tagging
+* You want release and hotfix changes to follow a consistent branch workflow
 * You want to automate repetitive Git steps safely
 
 Avoid using it if:

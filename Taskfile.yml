@@ -1,6 +1,8 @@
-# ─── Example Showing All Task Features ────────────────────────────────────────────────
+##########################################################################
+# Example showing all Task features
+##########################################################################
 # setup:
-#   desc: "⚙️ Setup environment: install dependencies, generate config"
+#   desc: "Setup environment: install dependencies, generate config"
 #   deps:
 #     - init:dev
 #   prompt:
@@ -17,14 +19,18 @@
 #     PROJECT_NAME: "{{.PROJECT_NAME}}"
 
 
-# ─── CLI Args ────────────────────────────────────────────────────────────────
+##########################################################################
+# CLI arguments
+##########################################################################
 # shad:
 #     desc: "Add a shadcn component"
 #     dir: django_template/apps/web
 #     cmds:
 #       - uvx shadcn_django@latest add {{.CLI_ARGS}}
 
-# ─── Initialized Tasks ────────────────────────────────────────────────────────────────
+##########################################################################
+# Initialized tasks
+##########################################################################
 # init:dev:
 #   desc: "Initialize local/dev environment specifics"
 #   internal: true
@@ -33,7 +39,9 @@
 #   platforms: [linux, darwin]
 
 
-# ─── Example Task with Inputs, Status Checks and Directory ────────────────────────────
+##########################################################################
+# Example task with inputs, status checks, and directory
+##########################################################################
 # run-task:
 #   desc: "Run a task with an input parameter"
 #   dir: terraform/environments/dev
@@ -45,7 +53,9 @@
 #   status:
 #     - 'test -f output/{{.task_name}}.done'
 
-# ─── Global Configuration ───────────────────────────────────────────────────────
+##########################################################################
+# Global configuration
+##########################################################################
 version: "3"
 output: prefixed
 dotenv:
@@ -69,99 +79,216 @@ includes:
     flatten: true
 
 
-# ─── Core Tasks ────────────────────────────────────────────────────────────────
+##########################################################################
+# Core workflow
+##########################################################################
 tasks:
   default:
-    desc: "List all tasks"
+    desc: "List all available tasks"
     cmds:
       - task --list-all
 
   setup:
-    desc: "Sync the mise-managed Python environment and install hooks"
+    desc: "Install pinned tools, sync dependencies, and install hooks"
     cmds:
       - mise run setup
       - pre-commit install
 
-# ─── Environment Management ────────────────────────────────────────────────────
-  dev:
-    desc: "Provision and start local development environment"
-
-  prod:
-    desc: "Provision and deploy to production"
-
-
-# ─── Misc ────────────────────────────────────────────────────
-  info:
-    desc: "URLs to visit"
+  check:
+    desc: "Run all configured repository checks"
     cmds:
-      - echo "Prometheus -> {{.PROM_URL}}"
-      - echo "Grafana -> {{.GRAF_URL}}"
-      - echo "App -> {{.APP_URL}}"
-
-  status:
-    desc: "Check if anything is running"
-
-  versions:
-    desc: "List current deployed versions"
-    cmds:
-      - uv run mike list
+      - task: precommit
 
   precommit:
-    desc: "Run all precommit rules"
+    desc: "Run all configured pre-commit checks"
     cmds:
-      -  pre-commit run --all-files
+      - pre-commit run --all-files
 
-  repomix:
-    desc: "Run the repomix container"
+  test:ci:
+    desc: "Run all event-driven GitHub workflows and tests through act"
+    preconditions:
+      - sh: command -v act >/dev/null 2>&1
+        msg: "act is required. Install the pinned tools with 'mise install'."
+      - sh: command -v docker >/dev/null 2>&1
+        msg: "Docker CLI is required. Install Docker Desktop or Docker Engine."
+      - sh: docker info >/dev/null 2>&1
+        msg: "Docker daemon is unavailable. Start Docker Desktop or Docker Engine, then retry."
     cmds:
-      - docker run -v .:/app -it --rm ghcr.io/yamadashy/repomix --no-security-check --output-show-line-numbers --style markdown
+      # act cannot emulate hosted macOS runners; GitHub Actions runs those matrix legs.
+      - |
+        set -eu
+        mkdir -p .task
+        for event in push pull_request; do
+          log_file=".task/test-ci-${event}.log"
+          if act "${event}" --workflows .github/workflows --matrix os:ubuntu-latest --quiet >"${log_file}" 2>&1; then
+            echo "act ${event} workflow passed"
+          else
+            cat "${log_file}"
+            exit 1
+          fi
+        done
 
-# ─── System Management ─────────────────────────────────────────────────────────
+
+  _not-configured:
+    internal: true
+    requires:
+      vars: [task_name]
+    cmds:
+      - |
+        echo "Task '{{.task_name}}' is not configured for this project."
+        echo "Add the project-specific commands to Taskfile.yml before using it."
+        exit 1
+
+##########################################################################
+# Development workflow
+##########################################################################
+  dev:
+    desc: "Start the local development workflow"
+    cmds:
+      - task: dev:up
+
+  dev:up:
+    desc: "Start all application services locally"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: dev:up }
+
+  dev:down:
+    desc: "Stop all local application services"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: dev:down }
+
+  dev:logs:
+    desc: "Stream logs from local application services"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: dev:logs }
+
+  dev:status:
+    desc: "Show local application service status"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: dev:status }
+
+  status:
+    desc: "Show the current Git worktree status"
+    cmds:
+      - git status --short --branch
+
+  info:
+    desc: "Print project workflow information"
+    cmds:
+      - echo "Project -> {{.PROJECT_NAME}}"
+      - echo "Environment -> {{.ENV}}"
+      - echo "Docs server -> http://{{.MKDOCS_PORT}}/"
+
+##########################################################################
+# Quality and delivery extension points
+##########################################################################
+  build:
+    desc: "Build project artifacts"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: build }
+
+  test:
+    desc: "Run the project test suite"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: test }
+
+  lint:
+    desc: "Run project linters and formatters"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: lint }
+
+  deploy:dev:
+    desc: "Deploy the project to the development environment"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: deploy:dev }
+
+  deploy:staging:
+    desc: "Deploy the project to the staging environment"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: deploy:staging }
+
+  deploy:prod:
+    desc: "Deploy the project to the production environment"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: deploy:prod }
+
+  rollback:
+    desc: "Roll back the last deployment"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: rollback }
+
+  infra:plan:
+    desc: "Preview infrastructure changes"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: infra:plan }
+
+  infra:apply:
+    desc: "Apply infrastructure changes"
+    cmds:
+      - task: _not-configured
+        vars: { task_name: infra:apply }
+
+##########################################################################
+# System management
+##########################################################################
   ports:
-    desc: "List ports in use"
+    desc: "List listening TCP and UDP ports"
     cmds:
       - ss -tunl
 
-
-# ─── Documentation ─────────────────────────────────────────────────────────────
+##########################################################################
+# Documentation server
+##########################################################################
   docs:
-    desc: "Serve docs locally"
+    desc: "Serve MkDocs locally with live reload"
     cmds:
       - uv run mkdocs serve --clean -a {{.MKDOCS_PORT}}
 
   docs-docker:
-    desc: "Serve docs locally with docker"
+    desc: "Serve MkDocs through Docker Compose"
     cmds:
       - docker compose -f {{.DOCS_COMPOSE_FILE}} up -d
 
-
-
-# ─── Cleanup Tasks ─────────────────────────────────────────────────────────────
-  cleanup-zone:
-    desc: "Cleans up all Zone.Identifier files"
-    cmds:
-      - find . -type f -name "*Zone.Identifier*" -delete
-
-  cleanup-dev:
-    desc: "Cleanup development resources only"
+  docs-docker:down:
+    desc: "Stop the Docker-based MkDocs server"
     cmds:
       - docker compose -f {{.DOCS_COMPOSE_FILE}} down
 
-  cleanup-prod:
-    desc: "Cleanup production resources only"
-
-  cleanup-all:
-    desc: "Cleanup dev and prod in one swoop"
+##########################################################################
+# Cleanup tasks
+##########################################################################
+  cleanup-zone:
+    desc: "Remove Windows Zone.Identifier files"
     cmds:
-      - task: cleanup-dev
-      - task: cleanup-prod
+      - find . -type f -name "*Zone.Identifier*" -delete
+
+  cleanup:
+    desc: "Remove generated metadata and temporary files"
+    cmds:
       - task: cleanup-zone
 
+  cleanup-all:
+    desc: "Run all local cleanup tasks"
+    cmds:
+      - task: cleanup
 
-
-# ─── Assets and Compression ────────────────────────────────────────────────────
+##########################################################################
+# Asset workflow
+##########################################################################
   mkdir-assets:
-    desc: Create the assets/ directory if it doesn't exist
+    desc: "Create the assets directory"
     cmds:
       - cmd: mkdir -p assets
         silent: true
@@ -171,7 +298,7 @@ tasks:
         platforms: [windows]
 
   compress:
-    desc: Compress a video to assets/demo-video-small.mp4 (pass video=....mp4)
+    desc: "Compress a video into assets/demo-video-small.mp4"
     deps: [mkdir-assets]
     requires:
       vars: [video]
@@ -190,10 +317,10 @@ tasks:
     sources:
       - "{{.video}}"
     generates:
-      - "assets/demo-video-small.mp4"
+      - assets/demo-video-small.mp4
 
   compress-gif:
-    desc: Compress a GIF to assets/demo-video-small.gif (pass gif=....gif)
+    desc: "Compress a GIF into assets/demo-video-small.gif"
     deps: [mkdir-assets]
     requires:
       vars: [gif]
@@ -213,9 +340,16 @@ tasks:
     sources:
       - "{{.gif}}"
     generates:
+      - assets/demo-video-small.gif
 
-      - "assets/demo-video-small.gif"
-
-
-
-
+##########################################################################
+# Utilities
+##########################################################################
+  repomix:
+    desc: "Generate a repository context bundle with security checks enabled"
+    cmds:
+      - >
+        docker run -v .:/app -it --rm
+        ghcr.io/yamadashy/repomix
+        --output-show-line-numbers
+        --style markdown

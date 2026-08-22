@@ -39,12 +39,19 @@ Common tasks for:
 
 ### 3. **Documentation**
 
-Tasks to:
+Tasks to serve the documentation locally through the Python environment or
+Docker Compose. Project-specific documentation builds and publishing belong in
+the project's own workflow tasks, not in this starter template.
 
-* Serve documentation locally (e.g., MkDocs)
-* Build or deploy docs (if using GitHub Pages or mike)
+### 4. **Quality & CI**
 
-### 4. **Deployment & Automation**
+Run repository checks directly with `task check`, `uv run pytest -q`, and
+`uv run mkdocs build --clean`. `task test:ci` runs the event-driven GitHub
+workflows through `act` and requires the `act` CLI plus a running Docker
+daemon. Local `act` execution covers the Ubuntu matrix leg; GitHub Actions
+executes the complete Linux and macOS matrix.
+
+### 5. **Deployment & Automation**
 
 Tasks may automate:
 
@@ -52,7 +59,7 @@ Tasks may automate:
 * Running linters or formatters
 * Applying infrastructure changes (e.g., with Terraform)
 
-### 5. **Cleanup & Teardown**
+### 6. **Cleanup & Teardown**
 
 Includes safe commands to:
 
@@ -64,7 +71,7 @@ Includes safe commands to:
 
 ## Typical Usage Flow
 
-Mise provisions the pinned tools before Task runs the project setup task:
+After configuring the project-specific extension points:
 
 1. Install the versions declared in `mise.toml` and `mise.lock`:
 
